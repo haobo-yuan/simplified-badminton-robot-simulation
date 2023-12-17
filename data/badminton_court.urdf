@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="badminton_court">
+
+  <!-- Base link (Ground of the badminton court) -->
+  <link concave="yes" name="base_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+       <mass value=".0"/>
+       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+        <box size="13.4 6.1 0.05"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1.0"/>
+      </material>
+    </visual>
+
+    <collision concave="yes">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+				<box size="13.4 6.1 0.05"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+
+
+  <!-- Net link -->
+  <link name="net_link">
+    <visual>
+      <geometry>
+        <box size="0.02 6.1 1.55"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+
+
+  <!-- Joint to position the net in the middle of the court -->
+  <joint name="net_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="net_link"/>
+    <origin xyz="0 0 0.775" rpy="0 0 0"/>
+  </joint>
+
+</robot>
